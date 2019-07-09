@@ -3,4 +3,4 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
-rootProject.name = 'myapp'
+rootProject.name = "myapp-back"
