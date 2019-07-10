@@ -1,6 +1,6 @@
-package leonsk32.myapp.myappback.security2
+package leonsk32.myapp.myappback.security
 
-import leonsk32.myapp.myappback.security2.Authority.*
+import leonsk32.myapp.myappback.security.Authority.*
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
@@ -34,7 +34,7 @@ class Account(
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         val authorities: MutableList<GrantedAuthority> = mutableListOf()
-        authorities.add(SimpleGrantedAuthority(authority.toString()))
+        authorities.add(SimpleGrantedAuthority("ROLE_$authority"))
         return authorities
     }
 

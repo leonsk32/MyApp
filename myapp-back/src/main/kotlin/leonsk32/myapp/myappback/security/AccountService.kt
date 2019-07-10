@@ -1,4 +1,4 @@
-package leonsk32.myapp.myappback.security2
+package leonsk32.myapp.myappback.security
 
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 import java.util.Objects.isNull
 
-//@Service
+@Service
 class AccountService(
         private val accountRepository: AccountRepository
 ): UserDetailsService {

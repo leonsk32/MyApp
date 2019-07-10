@@ -1,4 +1,4 @@
-package leonsk32.myapp.myappback.security
+package leonsk32.myapp.myappback.restapi
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
