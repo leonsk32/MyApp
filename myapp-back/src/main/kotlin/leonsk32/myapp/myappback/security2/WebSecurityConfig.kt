@@ -1,4 +1,4 @@
-package leonsk32.myapp.myappback.security
+package leonsk32.myapp.myappback.security2
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -11,12 +11,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 import org.springframework.security.crypto.password.NoOpPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.config.annotation.authentication.configuration.GlobalAuthenticationConfigurerAdapter
 
 
-@Configuration
-@EnableWebSecurity
+//@Configuration
+//@EnableWebSecurity
 class WebSecurityConfig(
         private val userDetailsService: UserDetailsService
 ) : WebSecurityConfigurerAdapter() {
@@ -52,7 +51,7 @@ class WebSecurityConfig(
                 .logoutSuccessUrl("/index")
     }
 
-    @Configuration
+//    @Configuration
     class AuthenticationConfiguration(
             private val userDetailsService: UserDetailsService
     ) : GlobalAuthenticationConfigurerAdapter() {

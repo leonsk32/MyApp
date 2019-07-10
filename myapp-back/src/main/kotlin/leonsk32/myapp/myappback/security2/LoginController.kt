@@ -1,4 +1,4 @@
-package leonsk32.myapp.myappback.restapi
+package leonsk32.myapp.myappback.security2
 
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping

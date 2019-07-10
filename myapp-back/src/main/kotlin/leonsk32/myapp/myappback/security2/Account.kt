@@ -1,6 +1,6 @@
-package leonsk32.myapp.myappback.security
+package leonsk32.myapp.myappback.security2
 
-import leonsk32.myapp.myappback.security.Authority.*
+import leonsk32.myapp.myappback.security2.Authority.*
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails

@@ -1,6 +1,6 @@
-package leonsk32.myapp.myappback.security
+package leonsk32.myapp.myappback.security2
 
-import leonsk32.myapp.myappback.security.Authority.NORMAL_USER
+import leonsk32.myapp.myappback.security2.Authority.NORMAL_USER
 import org.springframework.stereotype.Repository
 
 @Repository
