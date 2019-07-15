@@ -6,25 +6,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
 class Account(
-        username: String,
-        password: String,
-        email: String,
-        authority: Authority
+        private val username: String = "",
+        private val password: String = "",
+        val email: String = "",
+        private val authority: Authority = NORMAL_USER
 ) : UserDetails {
-
-    private var username = ""
-    private var password = ""
-    private var email = ""
-    private var authority: Authority = NORMAL_USER
-
-    init{
-        this.username = username
-        this.password = password
-        this.email = email
-        this.authority = authority
-    }
-
-    constructor(): this("", "", "", NORMAL_USER)
 
     override fun getUsername(): String {
         return username
