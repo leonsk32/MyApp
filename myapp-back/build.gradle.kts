@@ -28,14 +28,18 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("com.h2database:h2")
 	runtimeOnly("org.postgresql:postgresql")
-	annotationProcessor("org.projectlombok:lombok")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
-	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+	testImplementation("org.junit.jupiter:junit-jupiter-engine")
+	testImplementation("org.dbunit:dbunit:2.5.4")
+	testImplementation("com.github.springtestdbunit:spring-test-dbunit:1.3.0")
+
+//	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 	compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.1")
+	compile("org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.0.1")
 
 }
 
