@@ -35,6 +35,8 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+	compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.1")
+
 }
 
 tasks.withType<KotlinCompile> {

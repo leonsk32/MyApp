@@ -1,6 +1,6 @@
 package leonsk32.myapp.myappback.security
 
-import leonsk32.myapp.myappback.security.Authority.*
+import leonsk32.myapp.myappback.security.Authority.NORMAL_USER
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
@@ -12,9 +12,9 @@ class Account(
         authority: Authority
 ) : UserDetails {
 
-    private var username: String = ""
-    private var password: String = ""
-    private var email: String = ""
+    private var username = ""
+    private var password = ""
+    private var email = ""
     private var authority: Authority = NORMAL_USER
 
     init{
@@ -23,6 +23,8 @@ class Account(
         this.email = email
         this.authority = authority
     }
+
+    constructor(): this("", "", "", NORMAL_USER)
 
     override fun getUsername(): String {
         return username
