@@ -1,7 +1,8 @@
-package leonsk32.myapp.myappback.security
+package leonsk32.myapp.myappback.infra.repository
 
 import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener
 import com.github.springtestdbunit.annotation.DatabaseSetup
+import leonsk32.myapp.myappback.security.Account
 import leonsk32.myapp.myappback.security.Authority.ADMIN
 import leonsk32.myapp.myappback.security.Authority.NORMAL_USER
 import org.assertj.core.api.Assertions.assertThat

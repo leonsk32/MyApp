@@ -1,5 +1,6 @@
-package leonsk32.myapp.myappback.security
+package leonsk32.myapp.myappback.infra.repository
 
+import leonsk32.myapp.myappback.security.Account
 import org.apache.ibatis.annotations.Mapper
 import org.apache.ibatis.annotations.Result
 import org.apache.ibatis.annotations.Results

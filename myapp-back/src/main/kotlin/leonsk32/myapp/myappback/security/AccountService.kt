@@ -1,5 +1,6 @@
 package leonsk32.myapp.myappback.security
 
+import leonsk32.myapp.myappback.biz.repository.AccountRepository
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
