@@ -36,11 +36,11 @@ dependencies {
 	testImplementation("org.junit.jupiter:junit-jupiter-engine")
 	testImplementation("org.dbunit:dbunit:2.5.4")
 	testImplementation("com.github.springtestdbunit:spring-test-dbunit:1.3.0")
+	testImplementation("org.mockito:mockito-junit-jupiter:2.23.0")
 
 //	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 	compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.1")
 	compile("org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.0.1")
-
 }
 
 tasks.withType<KotlinCompile> {
