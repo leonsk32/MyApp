@@ -22,8 +22,8 @@ class JavaSecurityConfigTests {
     @Autowired
     lateinit var mvc: MockMvc
 
-    private val normalApi = "/api/foo"
-    private val adminApi = "/api/admin/hoge"
+    private val normalApi = "/sec/foo"
+    private val adminApi = "/sec/admin/hoge"
 
     @Test
     @DisplayName("ログインしていないユーザが一般APIにアクセスできない")

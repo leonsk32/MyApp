@@ -6,3 +6,7 @@ spring:
     password: password
     driver-class-name: org.postgresql.Driver
     initialization-mode: always
+
+server:
+  servlet:
+    context-path: /api

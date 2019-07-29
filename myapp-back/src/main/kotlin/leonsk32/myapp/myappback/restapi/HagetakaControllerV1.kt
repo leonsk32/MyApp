@@ -1,13 +1,14 @@
 package leonsk32.myapp.myappback.restapi
 
-import leonsk32.myapp.myappback.biz.domain.HagetakaEntry
 import leonsk32.myapp.myappback.biz.service.HagetakaService
 import leonsk32.myapp.myappback.restapi.dto.HagetakaAnswerDto
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
-@RestController("/v1/hagetaka")
+@RestController
+@RequestMapping("/v1/hagetaka")
 class HagetakaControllerV1(
         private val hagetakaService: HagetakaService
 ) {
