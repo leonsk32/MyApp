@@ -4,6 +4,7 @@ import leonsk32.myapp.myappback.biz.domain.HagetakaEntry
 import leonsk32.myapp.myappback.biz.service.HagetakaService
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
@@ -12,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension
 import org.springframework.http.MediaType.APPLICATION_JSON_UTF8
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.ResultActions
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup
@@ -33,24 +35,43 @@ class HagetakaControllerV1Tests {
         mvc = standaloneSetup(HagetakaControllerV1(hagetakaService)).build()
     }
 
-    @Test
-    @DisplayName("名前と数字をPOSTするとHTTPステータス200が返る")
-    internal fun returns200() {
-        perfomPost(aRequest).andExpect(status().isOk)
+    @Nested
+    inner class Entry {
+        @Test
+        @DisplayName("HTTPステータス201が返る")
+        internal fun returns200() {
+            perfomPost(aRequest).andExpect(status().isCreated)
+        }
+
+        @Test
+        @DisplayName("サービスを適切な引数でコールする")
+        internal fun callsServiceWithArgs() {
+            perfomPost(aRequest)
+            verify(hagetakaService).entry(HagetakaEntry(aName, aValue, aRoundId))
+        }
+
+        private fun perfomPost(request: String): ResultActions {
+            return mvc.perform(
+                    post("/v1/hagetaka/entries")
+                            .contentType(APPLICATION_JSON_UTF8)
+                            .content(request)
+            )
+        }
     }
 
-    @Test
-    @DisplayName("サービスを適切な引数でコールする")
-    internal fun callsServiceWithArgs() {
-        perfomPost(aRequest)
-        verify(hagetakaService).entry(HagetakaEntry(aName, aValue, aRoundId))
-    }
+    @Nested
+    inner class FindByRoundId {
+        @Test
+        @DisplayName("HTTPステータス200が返る")
+        internal fun returns200() {
+            performGet(95).andExpect(status().isOk)
+        }
 
-    private fun perfomPost(request: String): ResultActions {
-        return mvc.perform(
-                post("/v1/hagetaka")
-                        .contentType(APPLICATION_JSON_UTF8)
-                        .content(request)
-        )
+
+        private fun performGet(roundId: Int): ResultActions {
+            return mvc.perform(
+                    get("/v1/hagetaka/entries?roundId=$roundId")
+            )
+        }
     }
 }

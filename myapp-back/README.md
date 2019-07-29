@@ -12,4 +12,4 @@
 `curl -i --header "Accept:application/json" -X GET -b /tmp/cookies.txt /tmp/cookies.txt http://localhost:8080/api/sec/admin/hoge`
 
 # hagetaka sample
-`curl -H 'Content-Type:application/json' -X POST -d '{"name": "user", "value": 3}' http://localhost:8080/api/v1/hagetaka`
+`curl -H 'Content-Type:application/json' -X POST -d '{"name": "user", "value": 3}' http://localhost:8080/api/v1/hagetaka/entries`
