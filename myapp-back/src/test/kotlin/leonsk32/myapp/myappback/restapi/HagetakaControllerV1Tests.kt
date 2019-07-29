@@ -26,7 +26,7 @@ class HagetakaControllerV1Tests {
     private val aName = "leonsk32"
     private val aValue = 5
     private val aRoundId = 103
-    private val aRequest = "{\"name\": \"$aName\",  \"value\": $aValue, \"round-id\": $aRoundId}"
+    private val aRequest = "{\"name\": \"$aName\",  \"value\": $aValue, \"roundId\": $aRoundId}"
 
     @BeforeEach
     internal fun setUp() {

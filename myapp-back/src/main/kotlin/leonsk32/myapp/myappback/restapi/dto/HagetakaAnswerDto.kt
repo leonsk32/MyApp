@@ -2,7 +2,7 @@ package leonsk32.myapp.myappback.restapi.dto
 
 import leonsk32.myapp.myappback.biz.domain.HagetakaEntry
 
-class HagetakaAnswerDto(
+data class HagetakaAnswerDto(
         val name: String,
         val value: Int,
         val roundId: Int
