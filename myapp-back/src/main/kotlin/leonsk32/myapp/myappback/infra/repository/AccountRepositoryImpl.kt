@@ -2,6 +2,7 @@ package leonsk32.myapp.myappback.infra.repository
 
 import leonsk32.myapp.myappback.security.Account
 import leonsk32.myapp.myappback.biz.repository.AccountRepository
+import leonsk32.myapp.myappback.infra.repository.mapper.AccountMapper
 import org.springframework.stereotype.Repository
 
 @Repository

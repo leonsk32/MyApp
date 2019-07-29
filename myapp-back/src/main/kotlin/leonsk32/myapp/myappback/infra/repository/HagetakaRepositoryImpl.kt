@@ -2,6 +2,7 @@ package leonsk32.myapp.myappback.infra.repository
 
 import leonsk32.myapp.myappback.biz.domain.HagetakaEntry
 import leonsk32.myapp.myappback.biz.repository.HagetakaRepository
+import leonsk32.myapp.myappback.infra.repository.mapper.HagetakaMapper
 import org.springframework.stereotype.Repository
 import java.util.Objects.isNull
 

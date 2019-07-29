@@ -1,6 +1,8 @@
 package leonsk32.myapp.myappback.infra.repository
 
 import leonsk32.myapp.myappback.biz.domain.HagetakaEntry
+import leonsk32.myapp.myappback.infra.repository.entity.HagetakaEntryEntity
+import leonsk32.myapp.myappback.infra.repository.mapper.HagetakaMapper
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName

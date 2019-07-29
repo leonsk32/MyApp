@@ -1,4 +1,4 @@
-package leonsk32.myapp.myappback.infra.repository
+package leonsk32.myapp.myappback.infra.repository.entity
 
 import java.time.LocalDateTime
 

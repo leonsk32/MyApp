@@ -1,7 +1,8 @@
-package leonsk32.myapp.myappback.infra.repository
+package leonsk32.myapp.myappback.infra.repository.mapper
 
 import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener
 import com.github.springtestdbunit.annotation.DatabaseSetup
+import leonsk32.myapp.myappback.infra.repository.mapper.AccountMapper
 import leonsk32.myapp.myappback.security.Account
 import leonsk32.myapp.myappback.security.Authority.ADMIN
 import leonsk32.myapp.myappback.security.Authority.NORMAL_USER

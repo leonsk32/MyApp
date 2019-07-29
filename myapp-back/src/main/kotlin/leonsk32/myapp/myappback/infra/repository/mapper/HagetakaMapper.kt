@@ -1,6 +1,7 @@
-package leonsk32.myapp.myappback.infra.repository
+package leonsk32.myapp.myappback.infra.repository.mapper
 
 import leonsk32.myapp.myappback.biz.domain.HagetakaEntry
+import leonsk32.myapp.myappback.infra.repository.entity.HagetakaEntryEntity
 import org.apache.ibatis.annotations.*
 
 @Mapper

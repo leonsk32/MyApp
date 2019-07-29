@@ -1,4 +1,4 @@
-package leonsk32.myapp.myappback.infra.repository
+package leonsk32.myapp.myappback.infra.repository.mapper
 
 import leonsk32.myapp.myappback.security.Account
 import org.apache.ibatis.annotations.Mapper
