@@ -21,8 +21,9 @@ class HagetakaServiceImplTests {
     @Mock
     private lateinit var hagetakaRepository: HagetakaRepository
 
-    private val newEntry = HagetakaEntry("leonsk32", 5)
-    private val entried = HagetakaEntry("entried", 3)
+    private val newEntry = HagetakaEntry("newEntry", 5, 100)
+    private val entriedName = "entried"
+    private val entried = HagetakaEntry(entriedName, 3, 100)
 
     @BeforeEach
     internal fun setUp() {
@@ -46,7 +47,7 @@ class HagetakaServiceImplTests {
             hagetakaService.entry(entried)
             fail()
         } catch (e: AlreadyEntriedException) {
-            assertThat(e.message).isEqualTo("\"entried\" is already entried.")
+            assertThat(e.message).isEqualTo("\"$entriedName\" is already entried.")
         }
 
         verify(hagetakaRepository, never()).save(any(HagetakaEntry::class.java))

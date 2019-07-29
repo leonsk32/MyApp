@@ -9,6 +9,7 @@ create table if not exists accounts (
 
 create table if not exists hagetaka_entries (
     id serial primary key,
+    round_id integer,
     username varchar(30) references accounts(username),
     value integer,
     created_at timestamp default CURRENT_TIMESTAMP,

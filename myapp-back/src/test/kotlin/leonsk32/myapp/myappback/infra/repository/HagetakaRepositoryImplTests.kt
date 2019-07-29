@@ -21,10 +21,11 @@ internal class HagetakaRepositoryImplTests {
     @Mock
     private lateinit var hagetakaMapper: HagetakaMapper
 
-    val notEntriedName = "newUser"
-    val entriedName = "knownUser"
-    private val notEntried = HagetakaEntry(notEntriedName, 5)
-    private val entried = HagetakaEntry(entriedName, 3)
+    private val notEntriedName = "newUser"
+    private val entriedName = "knownUser"
+    private val roundId = 100
+    private val notEntried = HagetakaEntry(notEntriedName, 5, roundId)
+    private val entried = HagetakaEntry(entriedName, 3, roundId)
 
     @BeforeEach
     internal fun setUp() {
@@ -43,9 +44,9 @@ internal class HagetakaRepositoryImplTests {
 
         @BeforeEach
         internal fun setUp() {
-            lenient(). `when`(hagetakaMapper.findByName(notEntriedName)).thenReturn(null)
-            lenient(). `when`(hagetakaMapper.findByName(entriedName)).thenReturn(
-                    HagetakaEntryEntity(1, entriedName, 5, LocalDateTime.MIN, LocalDateTime.MIN)
+            lenient(). `when`(hagetakaMapper.findByRoundIdAndName(roundId, notEntriedName)).thenReturn(null)
+            lenient(). `when`(hagetakaMapper.findByRoundIdAndName(roundId, entriedName)).thenReturn(
+                    HagetakaEntryEntity(1, roundId, entriedName, 5, LocalDateTime.MIN, LocalDateTime.MIN)
             )
         }
 

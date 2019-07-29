@@ -4,10 +4,11 @@ import java.time.LocalDateTime
 
 class HagetakaEntryEntity(
         var id: Int,
+        var roundId: Int,
         var username: String,
         var value: Int,
-        var created_at: LocalDateTime,
-        var updated_at: LocalDateTime
+        var createdAt: LocalDateTime,
+        var updatedAt: LocalDateTime
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -16,24 +17,26 @@ class HagetakaEntryEntity(
         other as HagetakaEntryEntity
 
         if (id != other.id) return false
+        if (roundId != other.roundId) return false
         if (username != other.username) return false
         if (value != other.value) return false
-        if (created_at != other.created_at) return false
-        if (updated_at != other.updated_at) return false
+        if (createdAt != other.createdAt) return false
+        if (updatedAt != other.updatedAt) return false
 
         return true
     }
 
     override fun hashCode(): Int {
         var result = id
+        result = 31 * result + roundId
         result = 31 * result + username.hashCode()
         result = 31 * result + value
-        result = 31 * result + created_at.hashCode()
-        result = 31 * result + updated_at.hashCode()
+        result = 31 * result + createdAt.hashCode()
+        result = 31 * result + updatedAt.hashCode()
         return result
     }
 
     override fun toString(): String {
-        return "HegatakaEntryEntity(id=$id, username='$username', value=$value, created_at=$created_at, updated_at=$updated_at)"
+        return "HagetakaEntryEntity(id=$id, roundId=$roundId, username='$username', value=$value, created_at=$createdAt, updated_at=$updatedAt)"
     }
 }

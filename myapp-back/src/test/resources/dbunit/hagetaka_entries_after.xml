@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <hagetaka_entries id="1" username="user" value="5"/>
+    <hagetaka_entries id="1" round_id="100" username="user" value="5"/>
 </dataset>

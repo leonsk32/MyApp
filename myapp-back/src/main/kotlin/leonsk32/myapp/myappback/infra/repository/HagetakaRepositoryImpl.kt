@@ -16,7 +16,7 @@ class HagetakaRepositoryImpl(
     }
 
     override fun isEntried(hagetakaEntry: HagetakaEntry): Boolean {
-        val searchedEntry = hagetakaMapper.findByName(hagetakaEntry.name)
+        val searchedEntry = hagetakaMapper.findByRoundIdAndName(hagetakaEntry.roundId, hagetakaEntry.name)
 
         return !isNull(searchedEntry)
     }

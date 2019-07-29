@@ -4,9 +4,10 @@ import leonsk32.myapp.myappback.biz.domain.HagetakaEntry
 
 class HagetakaAnswerDto(
         val name: String,
-        val value: Int
+        val value: Int,
+        val roundId: Int
 ) {
     fun toDomain(): HagetakaEntry {
-        return HagetakaEntry(name, value)
+        return HagetakaEntry(name, value, roundId)
     }
 }
