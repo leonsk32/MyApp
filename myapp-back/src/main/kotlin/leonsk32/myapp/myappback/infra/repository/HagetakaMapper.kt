@@ -1,13 +1,15 @@
 package leonsk32.myapp.myappback.infra.repository
 
 import leonsk32.myapp.myappback.biz.domain.HagetakaEntry
-import org.apache.ibatis.annotations.Mapper
-import org.apache.ibatis.annotations.Result
-import org.apache.ibatis.annotations.Results
-import org.apache.ibatis.annotations.Select
+import org.apache.ibatis.annotations.*
 
 @Mapper
 interface HagetakaMapper {
+
+    @Update("INSERT INTO hagetaka_entries(username, value, updated_at) VALUES(" +
+            "#{name}, " +
+            "#{value}, " +
+            "current_timestamp)")
     fun save(hagetakaEntry: HagetakaEntry)
 
     @Results(id = "hagetaka_entries",
@@ -19,5 +21,5 @@ interface HagetakaMapper {
                 Result(column = "updated_at", property = "updated_at")
             ])
     @Select("SELECT * FROM hagetaka_entries WHERE username = #{name}")
-    fun findByName(name: String): HagetakaEntryEntity?
+    fun findByName(@Param("name") name: String): HagetakaEntryEntity?
 }

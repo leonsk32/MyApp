@@ -2,6 +2,9 @@ package leonsk32.myapp.myappback.infra.repository
 
 import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener
 import com.github.springtestdbunit.annotation.DatabaseSetup
+import com.github.springtestdbunit.annotation.ExpectedDatabase
+import com.github.springtestdbunit.assertion.DatabaseAssertionMode.NON_STRICT
+import leonsk32.myapp.myappback.biz.domain.HagetakaEntry
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
@@ -13,11 +16,32 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener
 import java.time.LocalDateTime
 
+
 @MybatisTest
 class HagetakaMapperTests {
 
     @Autowired
     lateinit var hagetakaMapper: HagetakaMapper
+
+    @Nested
+    @MybatisTest
+    @TestExecutionListeners(
+            DependencyInjectionTestExecutionListener::class,
+            DirtiesContextTestExecutionListener::class,
+            TransactionDbUnitTestExecutionListener::class
+    )
+    inner class Save {
+
+        @Test
+        @DatabaseSetup("/dbunit/accounts.xml")
+        @ExpectedDatabase(value = "/dbunit/hagetaka_entries_after.xml", table = "hagetaka_entries", assertionMode = NON_STRICT)
+        internal fun save() {
+            val hagetakaEntry = HagetakaEntry("user", 5)
+            hagetakaMapper.save(hagetakaEntry)
+        }
+
+    }
+
 
     @Nested
     @MybatisTest
