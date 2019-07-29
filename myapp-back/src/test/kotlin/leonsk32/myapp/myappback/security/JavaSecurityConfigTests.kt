@@ -23,7 +23,7 @@ class JavaSecurityConfigTests {
     lateinit var mvc: MockMvc
 
     private val normalApi = "/api/foo"
-    private val adminApi = "/api/admin/performGetAndExpect"
+    private val adminApi = "/api/admin/hoge"
 
     @Test
     @DisplayName("ログインしていないユーザが一般APIにアクセスできない")
