@@ -13,7 +13,7 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.ResultActions
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-import org.springframework.test.web.servlet.setup.MockMvcBuilders
+import org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup
 
 @ExtendWith(MockitoExtension::class)
 class HagetakaControllerV1Tests {
@@ -28,7 +28,7 @@ class HagetakaControllerV1Tests {
 
     @BeforeEach
     internal fun setUp() {
-        mvc = MockMvcBuilders.standaloneSetup(HagetakaControllerV1(hagetakaService)).build()
+        mvc = standaloneSetup(HagetakaControllerV1(hagetakaService)).build()
     }
 
     @Test
