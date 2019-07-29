@@ -1,5 +1,6 @@
 package leonsk32.myapp.myappback.biz.service
 
+import leonsk32.myapp.myappback.biz.domain.HagetakaEntry
 import leonsk32.myapp.myappback.biz.repository.HagetakaRepository
 import leonsk32.myapp.myappback.biz.service.exception.AlreadyEntriedException
 import org.assertj.core.api.Assertions.assertThat
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
+import org.mockito.Mockito
 import org.mockito.Mockito.*
 import org.mockito.junit.jupiter.MockitoExtension
 
@@ -19,35 +21,38 @@ class HagetakaServiceImplTests {
     @Mock
     private lateinit var hagetakaRepository: HagetakaRepository
 
+    private val newEntry = HagetakaEntry("leonsk32", 5)
+    private val entried = HagetakaEntry("entried", 3)
+
     @BeforeEach
     internal fun setUp() {
         hagetakaService = HagetakaServiceImpl(hagetakaRepository)
+        lenient().`when`(hagetakaRepository.isEntried(newEntry)).thenReturn(false)
+        lenient().`when`(hagetakaRepository.isEntried(entried)).thenReturn(true)
     }
 
     @Test
-    @DisplayName("引数で渡された値でリポジトリに登録される")
+    @DisplayName("新しいエントリがリポジトリに登録される")
     internal fun entry() {
-        `when`(hagetakaRepository.isEntried("leonsk32"))
-                .thenReturn(false)
+        hagetakaService.entry(newEntry)
 
-        hagetakaService.entry("leonsk32", 5)
-
-        verify(hagetakaRepository).save("leonsk32", 5)
+        verify(hagetakaRepository).save(newEntry)
     }
 
     @Test
     @DisplayName("すでに登録されている場合、エラーが返却され登録がされない")
     internal fun alreadyEntried() {
-        `when`(hagetakaRepository.isEntried("leonsk32"))
-                .thenReturn(true)
-
         try {
-            hagetakaService.entry("leonsk32", 5)
+            hagetakaService.entry(entried)
             fail()
         } catch (e: AlreadyEntriedException) {
-            assertThat(e.message).isEqualTo("leonsk32 is already entried.")
+            assertThat(e.message).isEqualTo("\"entried\" is already entried.")
         }
 
-        verify(hagetakaRepository, never()).save(anyString(), anyInt())
+        verify(hagetakaRepository, never()).save(any(HagetakaEntry::class.java))
+    }
+
+    private fun <T> any(clazz: Class<T>): T {
+        return Mockito.any(clazz)
     }
 }

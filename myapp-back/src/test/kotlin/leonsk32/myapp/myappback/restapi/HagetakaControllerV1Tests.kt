@@ -1,5 +1,6 @@
 package leonsk32.myapp.myappback.restapi
 
+import leonsk32.myapp.myappback.biz.domain.HagetakaEntry
 import leonsk32.myapp.myappback.biz.service.HagetakaService
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
@@ -41,7 +42,7 @@ class HagetakaControllerV1Tests {
     @DisplayName("サービスを適切な引数でコールする")
     internal fun callsServiceWithArgs() {
         perfomPost(aRequest)
-        verify(hagetakaService).entry(aName, aValue)
+        verify(hagetakaService).entry(HagetakaEntry(aName, aValue))
     }
 
     private fun perfomPost(request: String): ResultActions {

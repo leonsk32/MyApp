@@ -1,6 +1,8 @@
 package leonsk32.myapp.myappback.biz.repository
 
+import leonsk32.myapp.myappback.biz.domain.HagetakaEntry
+
 interface HagetakaRepository {
-    fun save(name: String, value: Int)
-    fun isEntried(name: String): Boolean
+    fun save(hagetakaEntry: HagetakaEntry)
+    fun isEntried(hagetakaEntry: HagetakaEntry): Boolean
 }
