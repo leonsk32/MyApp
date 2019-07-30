@@ -1,6 +1,5 @@
 <template>
   <div>
-    <router-link to="/">Go to top</router-link>
     <p>player1: {{p1Hand}}</p>
     <input type="text" v-model="p1Hand">
     <br>
@@ -22,7 +21,7 @@
 </template>
 
 <script>
-import { Hands, PlayResults } from "../js/constants";
+import { Hands, PlayResults } from "../js/constants"
 
 export default {
   props: {
@@ -33,40 +32,40 @@ export default {
     return {
       p1Hand: Hands.rock,
       p2Hand: Hands.paper
-    };
+    }
   },
   methods: {
     setHand(event, hand) {
       if (event.target.parentElement.id == "p1Buttons") {
-        this.p1Hand = hand;
+        this.p1Hand = hand
       } else if (event.target.parentElement.id == "p2Buttons") {
-        this.p2Hand = hand;
+        this.p2Hand = hand
       }
     },
     rock(event) {
-      this.setHand(event, Hands.rock);
+      this.setHand(event, Hands.rock)
     },
     scissors(event) {
-      this.setHand(event, Hands.scissors);
+      this.setHand(event, Hands.scissors)
     },
     paper(event) {
-      this.setHand(event, Hands.paper);
+      this.setHand(event, Hands.paper)
     }
   },
   computed: {
     result() {
-      const result = this.rockScissorsPaper.play(this.p1Hand, this.p2Hand);
+      const result = this.rockScissorsPaper.play(this.p1Hand, this.p2Hand)
       if (result == PlayResults.p1Wins) {
-        return "Player 1 Wins!";
+        return "Player 1 Wins!"
       } else if (result == PlayResults.p2Wins) {
-        return "Player 2 Wins!";
+        return "Player 2 Wins!"
       } else if (result == PlayResults.draw) {
-        return "Draw...";
+        return "Draw..."
       }
     },
     refHands() {
-      return Hands;
+      return Hands
     }
   }
-};
+}
 </script>
