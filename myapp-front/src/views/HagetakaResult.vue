@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-table striped hover :items="lists"></b-table>
+    <b-table striped hover :items="answers"></b-table>
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   data() {
     return {
-      lists: [],
+      answers: [],
       maxValue: null
     }
   },
@@ -22,7 +22,7 @@ export default {
         snapshot.docChanges().forEach(function(change) {
           if (change.type === "added") {
             const findAnswerByValue = value => {
-              const answer = vue.lists.find((item) => item.value === value)
+              const answer = vue.answers.find((item) => item.value === value)
               return {
                 exists: typeof answer !== "undefined",
                 answer: answer
@@ -41,15 +41,15 @@ export default {
               duplicatedAnswer.answer.names.push(answer.name)
               duplicatedAnswer.answer._rowVariant = 'danger'
             } else {
-              vue.lists.push({
+              vue.answers.push({
                 names: [answer.name],
                 value: answer.value
               })
             }
             
-            vue.lists.sort((a, b) => b.value - a.value)
+            vue.answers.sort((a, b) => b.value - a.value)
 
-            let maxValidItem = vue.lists.find((item) => item.names.length === 1)
+            let maxValidItem = vue.answers.find((item) => item.names.length === 1)
             if (typeof maxValidItem !== "undefined") {
               vue.maxValue = maxValidItem.value
               maxValidItem._rowVariant = 'primary'
