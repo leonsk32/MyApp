@@ -33,6 +33,11 @@ export default new Router({
       path: '/hagetaka',
       name: 'hagetaka',
       component: () => import('./views/Hagetaka.vue')
+    },
+    {
+      path: '/hagetaka-result',
+      name: 'hagetaka-result',
+      component: () => import('./views/HagetakaResult.vue')
     }
   ]
 })
