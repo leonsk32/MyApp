@@ -1,7 +1,7 @@
 <template>
   <div class="bootstrap-sample">
     <b-form>
-      <b-form-group id="sample-group" label="テキストを入力" label-for="sample-text">
+      <b-form-group id="sample-group" label="入力してね" label-for="sample-text">
         <b-form-input placeholder="name" v-model="name"></b-form-input>
         <b-form-input placeholder="value" v-model="value"></b-form-input>
       </b-form-group>

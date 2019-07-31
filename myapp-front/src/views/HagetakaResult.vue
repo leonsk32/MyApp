@@ -12,7 +12,7 @@ export default {
     }
   },
   created: function() {
-    var vue = this
+    const vue = this
 
     firebase
       .firestore()
@@ -20,7 +20,20 @@ export default {
       .onSnapshot(function(snapshot) {
         snapshot.docChanges().forEach(function(change) {
           if (change.type === "added") {
-            vue.lists.push(change.doc.data())
+            const answer = change.doc.data()
+            let searched = vue.lists.find((item) => {
+              return item.value === answer.value
+            })
+
+            if (typeof searched === "undefined") {
+              vue.lists.push({
+                names: [answer.name],
+                value: answer.value
+              })
+            } else {
+              searched.names.push(answer.name)
+            }
+
             vue.lists.sort((a, b) => b.value - a.value)
           }
         })

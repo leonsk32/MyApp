@@ -11,11 +11,9 @@
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
-  <!-- <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script> -->
   <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-firestore.js"></script>
 
   <script>
-    // Your web app's Firebase configuration
     var firebaseConfig = {
       apiKey: "AIzaSyBmVsZs6nbSFa0iwU02V3AZCfuvdLD1tSw",
       authDomain: "my-app-7bb29.firebaseapp.com",
@@ -24,9 +22,12 @@
       storageBucket: "",
       messagingSenderId: "386845991373",
       appId: "1:386845991373:web:b3f5164904229ddf"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
+    }
+    firebase.initializeApp(firebaseConfig)
+
+    const firestore = firebase.firestore()
+    const firestoreSettings = {timestampsInSnapshots: true}
+    firestore.settings(firestoreSettings)
   </script>
 </head>
 
