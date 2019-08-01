@@ -5,7 +5,12 @@
         <b-form-input placeholder="name" v-model="name" :state="isValidName"></b-form-input>
         <b-form-input placeholder="0-999" v-model="value" :state="isValidValue"></b-form-input>
       </b-form-group>
-      <b-button v-on:click="doAdd" variant="primary">送る</b-button>
+      <b-button
+        v-on:click="doAdd"
+        v-bind:variant="(!isValidName || !isValidValue) ? false : 'primary'"
+        v-bind:disabled="!isValidName || !isValidValue">
+        送る
+      </b-button>
     </b-form>
   </div>
 </template>
@@ -50,6 +55,9 @@
 
         const number = Number(this.value);
         return number >= 0 && number <= 999
+      },
+      isValid() {
+        return this.isValidName && this.isValidName
       }
     }
   }
