@@ -1,6 +1,12 @@
 <template>
   <div>
-    <b-table hover :items="answers"></b-table>
+    <b-alert variant="primary" show v-if="existsTop">
+      <h1>Top Player: {{topAnswer.names[0]}} !!! ({{topAnswer.value}})</h1>
+    </b-alert>
+    <b-alert variant="secondary" show v-else>
+      <h1>no top player...</h1>
+    </b-alert>
+    <b-table hover :items="results"></b-table>
   </div>
 </template>
 
@@ -9,7 +15,7 @@ export default {
   data() {
     return {
       answers: [],
-      maxValue: null
+      topAnswer: null
     }
   },
   created: function() {
@@ -21,25 +27,11 @@ export default {
       .onSnapshot(function(snapshot) {
         snapshot.docChanges().forEach(function(change) {
           if (change.type === "added") {
-            const findAnswerByValue = value => {
-              const answer = vue.answers.find((item) => item.value === value)
-              return {
-                exists: typeof answer !== "undefined",
-                answer: answer
-              }
-            }
-
-            let previousMaxAnswer = findAnswerByValue(vue.maxValue)
-            if (previousMaxAnswer.exists) {
-              previousMaxAnswer.answer._rowVariant = null
-            }
-
             const answer = change.doc.data()
 
-            let duplicatedAnswer = findAnswerByValue(answer.value)
-            if (duplicatedAnswer.exists) {
-              duplicatedAnswer.answer.names.push(answer.name)
-              duplicatedAnswer.answer._rowVariant = 'secondary'
+            let sameValueAnswer = vue.answers.find(item => item.value === answer.value)
+            if (typeof sameValueAnswer !== 'undefined') {
+              sameValueAnswer.names.push(answer.name)
             } else {
               vue.answers.push({
                 names: [answer.name],
@@ -48,22 +40,32 @@ export default {
             }
 
             vue.answers.sort((a, b) => b.value - a.value)
-
-            let maxValidItem = vue.answers.find((item) => item.names.length === 1)
-            if (typeof maxValidItem !== "undefined") {
-              vue.maxValue = maxValidItem.value
-              maxValidItem._rowVariant = 'primary'
-            } else {
-              vue.maxValue = null
-            }
-
+            vue.topAnswer = vue.answers.find((item) => item.names.length === 1)
           }
         })
       })
 
   },
   computed: {
+    results() {
+      return this.answers.map(answer => {
+        let status = null
+        if (answer === this.topAnswer) {
+          status = 'primary'
+        } else if (answer.names.length > 1) {
+          status = 'secondary'
+        }
 
+        return {
+          player: answer.names.join(', '),
+          value: answer.value,
+          _rowVariant: status
+        }
+      })
+    },
+    existsTop() {
+      return typeof this.topAnswer !== 'undefined'
+    },
   }
-};
+}
 </script>
