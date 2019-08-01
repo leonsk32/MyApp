@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-table striped hover :items="answers"></b-table>
+    <b-table hover :items="answers"></b-table>
   </div>
 </template>
 
@@ -39,14 +39,14 @@ export default {
             let duplicatedAnswer = findAnswerByValue(answer.value)
             if (duplicatedAnswer.exists) {
               duplicatedAnswer.answer.names.push(answer.name)
-              duplicatedAnswer.answer._rowVariant = 'danger'
+              duplicatedAnswer.answer._rowVariant = 'secondary'
             } else {
               vue.answers.push({
                 names: [answer.name],
                 value: answer.value
               })
             }
-            
+
             vue.answers.sort((a, b) => b.value - a.value)
 
             let maxValidItem = vue.answers.find((item) => item.names.length === 1)
@@ -56,11 +56,11 @@ export default {
             } else {
               vue.maxValue = null
             }
-          
+
           }
         })
       })
-  
+
   },
   computed: {
 

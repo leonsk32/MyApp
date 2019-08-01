@@ -22,7 +22,7 @@ export default {
 
   methods: {
     doAdd(){
-        var now = new Date();
+        const now = new Date();
         firebase.firestore().collection('hagetaka').add({
             name: this.name,
             value: this.value,
