@@ -3,11 +3,16 @@ export default class Validator {
   }
 
   static isNumeric(value) {
-    if (value === "") {
-      return null
-    }
-
     const pattern = /^\d*$/g
-    return pattern.test(value)
+    return this.testPattern(pattern, value)
   }
+
+  static isAlphabeticalNumerical(value) {
+    const pattern = /^[0-9a-zA-Z]*$/g
+    return this.testPattern(pattern, value);
+  }
+
+  static testPattern(pattern, value) {
+      return pattern.test(value)
+    }
 }

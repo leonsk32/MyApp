@@ -3,7 +3,7 @@
     <b-form>
       <b-form-group label="入力してね">
         <b-form-input placeholder="name" v-model="name" :state="isValidName(name)"></b-form-input>
-        <b-form-input placeholder="0-999" v-model="value" :state="isValidValue(value)"></b-form-input>
+        <b-form-input placeholder="0-999" v-model="value" :state="isValidValue  (value)"></b-form-input>
       </b-form-group>
       <b-button
         v-on:click="doAdd"
@@ -16,6 +16,8 @@
 </template>
 
 <script>
+
+  import Validator from "../js/Validator";
 
   export default {
     data() {
@@ -36,21 +38,13 @@
       },
 
       isValidName(name) {
-        if (name === "") {
-          return null
-        }
-
-        const pattern = /^[0-9a-zA-Z]*$/g
-        return pattern.test(name)
+        if (name === "") return null
+        return Validator.isAlphabeticalNumerical(name)
       },
 
       isValidValue(value) {
-        if (value === "") {
-          return null
-        }
-
-        const pattern = /^\d*$/g
-        if (!pattern.test(value)) return false;
+        if (value === "") return null
+        if (!Validator.isNumeric(value)) return false;
 
         const number = Number(value);
         return number >= 0 && number <= 999

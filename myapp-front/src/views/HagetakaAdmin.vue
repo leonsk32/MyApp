@@ -27,7 +27,8 @@
 
     methods: {
       isValidValue(value) {
-        Validator.isNumeric(value)
+        if (value === "") return null
+        return Validator.isNumeric(value)
       },
     }
   }
