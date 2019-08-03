@@ -43,6 +43,10 @@ export default new Router({
       path: '/hagetaka-admin',
       name: 'hagetaka-adimin',
       component: () => import('./views/HagetakaAdmin.vue')
+    },
+    {
+      path: '/hagetaka/rounds/:id',
+      component: () => import('./views/Hagetaka.vue')
     }
   ]
 })

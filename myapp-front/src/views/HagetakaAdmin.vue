@@ -26,7 +26,10 @@
       v-bind:disabled="!isValid"
       v-bind:variant="isValid ? 'primary' : 'false'"
     >Create New Round</b-button>
-    <b-alert variant="success" v-bind:show="created">Created: {{createdRoundId}}}</b-alert>
+    <b-alert variant="success" v-bind:show="created">
+      Created Round ID: {{createdRoundId}}<br>
+      <router-link v-bind:to="'/hagetaka/rounds/' + createdRoundId">Go To Game</router-link>
+    </b-alert>
   </div>
 </template>
 

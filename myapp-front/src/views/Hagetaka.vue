@@ -1,5 +1,6 @@
 <template>
   <div class="bootstrap-sample">
+    <h1>{{ $route.params.id }}</h1>
     <b-form>
       <b-form-group label="入力してね">
         <b-form-input placeholder="name" v-model="name" :state="isValidName"></b-form-input>
