@@ -1,6 +1,14 @@
 <template>
   <div class="bootstrap-sample">
-    <h1>{{ $route.params.id }}</h1>
+    <div v-if="existsRound">
+      <h1>[Round Name] {{ round.roundName }}</h1>
+      <h4>[Round Id] {{ $route.params.id }}</h4>
+    </div>
+    <div v-else>
+      <b-alert variant="danger" show>
+        <h1>{{error}}</h1>
+      </b-alert>
+    </div>
     <b-form>
       <b-form-group label="入力してね">
         <b-form-input placeholder="name" v-model="name" :state="isValidName"></b-form-input>
@@ -23,9 +31,32 @@
   export default {
     data() {
       return {
+        round: null,
         name: "",
-        value: ""
+        value: "",
+        error: ""
       }
+    },
+
+    created: function() {
+      const docRef = firebase
+        .firestore()
+        .collection("hagetaka-rounds")
+        .doc(this.$route.params.id)
+
+      const vue = this
+
+      docRef.get().then(function(doc) {
+        if (doc.exists) {
+          vue.round = doc.data()
+        } else {
+          vue.round = null
+          vue.error = "No round found!"
+        }
+      }).catch(function(error) {
+        vue.round = null
+        vue.error = "Error getting round info: " + error
+      })
     },
 
     methods: {
@@ -56,6 +87,10 @@
 
       isValid() {
         return this.isValidName && this.isValidValue
+      },
+
+      existsRound() {
+        return this.round !== null
       }
     }
   }

@@ -4,7 +4,6 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/play">Play</router-link> |
-      <router-link to="/hagetaka">Hagetaka</router-link> |
       <router-link to="/hagetaka-result">HagetakaResult</router-link> |
       <router-link to="/hagetaka-admin">HagetakaAdmin</router-link>
     </div>
