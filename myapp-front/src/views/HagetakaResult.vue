@@ -2,6 +2,7 @@
   <div>
     <b-alert variant="primary" show v-if="existsTop">
       <h1>Top Player: {{topAnswer.names[0]}} !!! ({{topAnswer.value}})</h1>
+      <router-link v-bind:to="'/hagetaka/rounds/' + $route.params.id">Back To Game Page</router-link><br>
     </b-alert>
     <b-alert variant="secondary" show v-else>
       <h1>no top player...</h1>
@@ -24,6 +25,7 @@ export default {
     firebase
       .firestore()
       .collection("hagetaka")
+      .where("roundId", "==", this.$route.params.id)
       .onSnapshot(function(snapshot) {
         snapshot.docChanges().forEach(function(change) {
           if (change.type === "added") {

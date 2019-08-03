@@ -30,7 +30,7 @@ export default new Router({
       props: { rockScissorsPaper: new RockScissorsPaper() }
     },
     {
-      path: '/hagetaka-result',
+      path: '/hagetaka/rounds/:id/result',
       name: 'hagetaka-result',
       component: () => import('./views/HagetakaResult.vue')
     },

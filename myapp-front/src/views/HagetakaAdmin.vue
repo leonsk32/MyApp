@@ -30,7 +30,7 @@
       </b-button>
       <b-alert variant="success" v-bind:show="created">
         Created Round ID: {{createdRoundId}}<br>
-        <router-link v-bind:to="'/hagetaka/rounds/' + createdRoundId">Go To Game</router-link>
+        <router-link v-bind:to="'/hagetaka/rounds/' + createdRoundId">Go To Game</router-link><br>
       </b-alert>
     </b-form>
   </div>

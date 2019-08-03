@@ -3,6 +3,7 @@
     <div v-if="existsRound">
       <h1>[Round Name] {{ round.roundName }}</h1>
       <h4>[Round Id] {{ $route.params.id }}</h4>
+      <router-link v-bind:to="'/hagetaka/rounds/' + $route.params.id + '/result'">Go To Result Page</router-link>
     </div>
     <div v-else>
       <b-alert variant="danger" show>
