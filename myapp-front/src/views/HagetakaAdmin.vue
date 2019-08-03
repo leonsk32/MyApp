@@ -11,6 +11,8 @@
 </template>
 
 <script>
+  import Validator from "../js/Validator";
+
   export default {
     data() {
       return {
@@ -25,12 +27,7 @@
 
     methods: {
       isValidValue(value) {
-        if (value === "") {
-          return null
-        }
-
-        const pattern = /^\d*$/g
-        return pattern.test(value)
+        Validator.isNumeric(value)
       },
     }
   }

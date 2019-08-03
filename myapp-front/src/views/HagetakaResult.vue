@@ -64,7 +64,7 @@ export default {
       })
     },
     existsTop() {
-      return typeof this.topAnswer !== 'undefined'
+      return (typeof this.topAnswer !== 'undefined' && this.topAnswer !== null)
     },
   }
 }

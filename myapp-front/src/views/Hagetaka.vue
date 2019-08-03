@@ -7,7 +7,7 @@
       </b-form-group>
       <b-button
         v-on:click="doAdd"
-        v-bind:variant="isValid ? 'primary' : false"
+        v-bind:variant="isValid ? 'primary' : 'false'"
         v-bind:disabled="!isValid">
         送る
       </b-button>
