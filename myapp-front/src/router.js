@@ -38,6 +38,11 @@ export default new Router({
       path: '/hagetaka-result',
       name: 'hagetaka-result',
       component: () => import('./views/HagetakaResult.vue')
+    },
+    {
+      path: '/hagetaka-admin',
+      name: 'hagetaka-adimin',
+      component: () => import('./views/HagetakaAdmin.vue')
     }
   ]
 })
