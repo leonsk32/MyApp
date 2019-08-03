@@ -1,5 +1,12 @@
 <template>
   <div>
+    <b-form-group label="ラウンド名" label-for="round-name-input" label-align="left">
+      <b-form-input
+        id="round-name-input"
+        placeholder="ROUND NAME"
+        v-model="roundName"
+        :state="isValidRoundName"></b-form-input>
+    </b-form-group>
     <b-form-group label="入力の最小値" label-for="min-value-input" label-align="left">
       <b-form-input
         id="min-value-input"
@@ -19,6 +26,7 @@
       v-bind:disabled="!isValid"
       v-bind:variant="isValid ? 'primary' : 'false'"
     >Create New Round</b-button>
+    <b-alert variant="success" v-bind:show="created">Created: {{createdRoundId}}}</b-alert>
   </div>
 </template>
 
@@ -29,7 +37,9 @@
     data() {
       return {
         maxValue: "",
-        minValue: "0"
+        minValue: "0",
+        roundName: "",
+        createdRoundId: null
       }
     },
 
@@ -38,7 +48,18 @@
         if (value === "") return null
         return Validator.isNumeric(value)
       },
-
+      create() {
+        const vue = this
+        const now = new Date();
+        firebase.firestore().collection('hagetaka-rounds').add({
+          roundName: this.roundName,
+          minValue: this.minValue,
+          maxValue: this.maxValue,
+          date: now
+        }).then(function(docRef) {
+          vue.createdRoundId = docRef.id
+        })
+      }
     },
 
     computed: {
@@ -53,6 +74,13 @@
         if (status !== true) return status
         if (!this.isValidMinValue) return true
         return Number(this.minValue) <= Number(this.maxValue)
+      },
+      isValidRoundName() {
+        if (this.roundName === "") return null
+        return true
+      },
+      created() {
+        return this.createdRoundId !== null
       }
     }
   }
