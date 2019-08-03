@@ -1,8 +1,8 @@
 <template>
   <div>
     <b-form-group>
-      <b-form-input placeholder="MAX VALUE" v-model="maxValue" :state="isValidMaxValue"></b-form-input>
-      <b-form-input placeholder="MIN VALUE" v-model="minValue" :state="isValidMinValue"></b-form-input>
+      <b-form-input placeholder="MAX VALUE" v-model="maxValue" :state="isValidValue(maxValue)"></b-form-input>
+      <b-form-input placeholder="MIN VALUE" v-model="minValue" :state="isValidValue(minValue)"></b-form-input>
     </b-form-group>
     <b-button
       variant="primary"
@@ -20,12 +20,7 @@
     },
 
     computed: {
-      isValidMinValue() {
-        return this.isValidValue(this.minValue)
-      },
-      isValidMaxValue() {
-        return this.isValidValue(this.maxValue)
-      },
+
     },
 
     methods: {
