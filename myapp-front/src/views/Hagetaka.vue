@@ -32,6 +32,7 @@
       doAdd() {
         const now = new Date();
         firebase.firestore().collection('hagetaka').add({
+          roundId: this.$route.params.id,
           name: this.name,
           value: Number(this.value),
           date: now
