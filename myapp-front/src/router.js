@@ -5,6 +5,7 @@ import Home from './views/Home.vue'
 import RockScissorsPaper from '@/js/RockScissorsPaper'
 import HagetakaAdmin from "./views/HagetakaAdmin";
 import Hagetaka from "./views/Hagetaka";
+import Login from "./views/Login";
 
 Vue.use(Router)
 
@@ -37,6 +38,11 @@ export default new Router({
       path: '/hagetaka/rounds/:id',
       name: 'hagetaka',
       component: Hagetaka
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     }
   ]
 })
