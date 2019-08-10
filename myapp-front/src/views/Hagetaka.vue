@@ -26,7 +26,8 @@
 </template>
 
 <script>
-
+  import firebase from 'firebase/app';
+  import 'firebase/firestore';
   import Validator from "../js/Validator";
 
   export default {

@@ -1,3 +1,6 @@
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 import store from "@/store";
 
 const firebaseConfig = {
@@ -16,11 +19,6 @@ export default {
 
     // settings for auth
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-
-    // settings for db
-    const firestore = firebase.firestore()
-    const firestoreSettings = {timestampsInSnapshots: true}
-    firestore.settings(firestoreSettings)
   },
   createUser(email, password) {
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
