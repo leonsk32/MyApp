@@ -15,8 +15,7 @@
         <div class="navbar-start">
           <router-link to="/">Home</router-link> |
           <router-link to="/play">Play</router-link> |
-          <router-link to="/hagetaka-admin">HagetakaAdmin</router-link> |
-          <router-link to="/login">Login</router-link>
+          <router-link to="/hagetaka-admin">HagetakaAdmin</router-link>
         </div>
         <div class="navbar-end">
           <Authentication />
