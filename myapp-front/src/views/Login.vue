@@ -2,7 +2,7 @@
   <div>
     <b-card
       title="サインアップ"
-      style="margin-left: 20px; margin-right: 20px; margin-top: 20px"
+      style="margin: 20px"
     >
       <b-form>
         <b-form-group>
@@ -18,7 +18,7 @@
     </b-card>
     <b-card
       title="ログイン"
-      style="margin-left: 20px; margin-right: 20px; margin-top: 20px"
+      style="padding: 20px"
     >
       <b-form>
         <b-form-group>

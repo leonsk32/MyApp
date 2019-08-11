@@ -1,23 +1,12 @@
 <template>
   <div>
-    <b-card
-      title="試合情報"
-      style="margin-left: 20px; margin-right: 20px; margin-top: 20px"
-    >
-      <div v-if="existsRound">
-        <h1>[Round Name] {{ round.roundName }}</h1>
-        <h4>[Round Id] {{ $route.params.id }}</h4>
-        <router-link v-bind:to="'/hagetaka/rounds/' + $route.params.id + '/result'">Go To Result Page</router-link>
-      </div>
-      <div v-else>
-        <b-alert variant="danger" show>
-          <h1>{{error}}</h1>
-        </b-alert>
-      </div>
-    </b-card>
+    <HagetakaRoundInfo
+      v-bind:roundId="$route.params.id"
+      v-bind:roundName="round.roundName"
+    />
     <b-card
       title="投票"
-      style="margin-left: 20px; margin-right: 20px; margin-top: 20px"
+      style="margin: 20px"
     >
       <b-form>
         <b-form-group
@@ -77,18 +66,27 @@
   import firebase from 'firebase/app';
   import 'firebase/firestore';
   import Validator from "../js/Validator";
+  import HagetakaRoundInfo from "../components/HagetakaRoundInfo";
 
   export default {
+    components: {
+      HagetakaRoundInfo
+    },
     data() {
       return {
-        round: null,
+        round: {
+          roundName: null,
+          minValue: null,
+          maxValue: null,
+          date: null
+        },
         name: "",
         value: "",
         error: ""
       }
     },
 
-    created: function() {
+    created: function () {
       const docRef = firebase
         .firestore()
         .collection("hagetaka-rounds")
@@ -96,14 +94,14 @@
 
       const vue = this
 
-      docRef.get().then(function(doc) {
+      docRef.get().then(function (doc) {
         if (doc.exists) {
           vue.round = doc.data()
         } else {
           vue.round = null
           vue.error = "No round found!"
         }
-      }).catch(function(error) {
+      }).catch(function (error) {
         vue.round = null
         vue.error = "Error getting round info: " + error
       })
@@ -146,3 +144,5 @@
   }
 
 </script>
+<style scoped>
+</style>

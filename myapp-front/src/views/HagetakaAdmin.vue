@@ -2,7 +2,7 @@
   <div>
     <b-card
       title="ラウンド作成"
-      style="margin-left: 20px; margin-right: 20px; margin-top: 20px"
+      style="margin: 20px"
     >
       <b-form>
         <b-form-group label="ラウンド名" label-for="round-name-input" label-align="left">

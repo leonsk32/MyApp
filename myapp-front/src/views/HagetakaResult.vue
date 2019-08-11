@@ -1,5 +1,9 @@
 <template>
   <div>
+    <HagetakaRoundInfo
+      v-bind:roundId="$route.params.id"
+      v-bind:roundName="round.roundName"
+    />
     <b-alert variant="primary" show v-if="existsTop">
       <h1>Top Player: {{topAnswer.names[0]}} !!! ({{topAnswer.value}})</h1>
       <router-link v-bind:to="'/hagetaka/rounds/' + $route.params.id">Back To Game Page</router-link>
@@ -15,16 +19,43 @@
 <script>
   import firebase from 'firebase/app';
   import 'firebase/firestore';
+  import HagetakaRoundInfo from "../components/HagetakaRoundInfo";
 
   export default {
+    components: {
+      HagetakaRoundInfo
+    },
     data() {
       return {
+        round: {
+          roundName: null,
+          minValue: null,
+          maxValue: null,
+          date: null
+        },
         answers: [],
         topAnswer: null
       }
     },
     created: function () {
       const vue = this
+
+      const docRef = firebase
+        .firestore()
+        .collection("hagetaka-rounds")
+        .doc(this.$route.params.id)
+
+      docRef.get().then(function (doc) {
+        if (doc.exists) {
+          vue.round = doc.data()
+        } else {
+          vue.round = null
+          vue.error = "No round found!"
+        }
+      }).catch(function (error) {
+        vue.round = null
+        vue.error = "Error getting round info: " + error
+      })
 
       firebase
         .firestore()

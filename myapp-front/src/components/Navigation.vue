@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="nav">
     <b-navbar toggleable="lg" variant="info">
       <b-navbar-brand href="#">MyApp</b-navbar-brand>
 
@@ -33,4 +33,11 @@
   }
 </script>
 <style scoped>
+  #nav a {
+    font-weight: bold;
+    color: white;
+  }
+  #nav a.router-link-exact-active {
+    color: black;
+  }
 </style>
