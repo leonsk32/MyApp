@@ -40,6 +40,14 @@
         </b-alert>
       </b-form>
     </b-card>
+
+    <b-card no-body header="作成済ラウンド一覧" style="margin: 20px">
+      <b-list-group flush>
+        <b-list-group-item v-for="round in rounds">
+          <router-link v-bind:to="'/hagetaka/rounds/' + round.id">{{round.roundInfo.roundName}}</router-link>
+        </b-list-group-item>
+      </b-list-group>
+    </b-card>
   </div>
 </template>
 
@@ -53,8 +61,19 @@
         maxValue: "",
         minValue: "0",
         roundName: "",
-        createdRoundId: null
+        createdRoundId: null,
+        rounds: []
       }
+    },
+
+    created: function () {
+      Firebase.onHagetakaRoundsCreated(
+        this.$store.getters.user.uid,
+        (round, id) => this.rounds.push({
+          roundInfo: round,
+          id: id
+        })
+      )
     },
 
     methods: {

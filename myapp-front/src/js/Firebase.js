@@ -83,5 +83,18 @@ export default {
       .then(function (docRef) {
         setRoundId(docRef.id)
       })
+  },
+  onHagetakaRoundsCreated(userId, addRound) {
+    firebase
+      .firestore()
+      .collection("games/hagetaka/rounds")
+      .where("authorId", "==", userId)
+      .onSnapshot(function (snapshot) {
+        snapshot.docChanges().forEach(function (change) {
+          if (change.type === "added") {
+            addRound(change.doc.data(), change.doc.id)
+          }
+        })
+      })
   }
 }
