@@ -1,38 +1,40 @@
 <template>
   <div>
-    <b-form>
-      <b-form-group label="ラウンド名" label-for="round-name-input" label-align="left">
-        <b-form-input
-          id="round-name-input"
-          placeholder="ROUND NAME"
-          v-model="roundName"
-          :state="isValidRoundName"></b-form-input>
-      </b-form-group>
-      <b-form-group label="入力の最小値" label-for="min-value-input" label-align="left">
-        <b-form-input
-          id="min-value-input"
-          placeholder="MIN VALUE"
-          v-model="minValue"
-          :state="isValidMinValue"></b-form-input>
-      </b-form-group>
-      <b-form-group label="入力の最大値" label-for="max-value-input" label-align="left">
-        <b-form-input
-          id="max-value-input"
-          placeholder="MAX VALUE"
-          v-model="maxValue"
-          :state="isValidMaxValue"></b-form-input>
-      </b-form-group>
-      <b-button
-        v-on:click="create"
-        v-bind:disabled="!isValid"
-        v-bind:variant="isValid ? 'primary' : 'false'"
-      >Create New Round
-      </b-button>
-      <b-alert variant="success" v-bind:show="created">
-        Created Round ID: {{createdRoundId}}<br>
-        <router-link v-bind:to="'/hagetaka/rounds/' + createdRoundId">Go To Game</router-link><br>
-      </b-alert>
-    </b-form>
+    <b-card>
+      <b-form>
+        <b-form-group label="ラウンド名" label-for="round-name-input" label-align="left">
+          <b-form-input
+            id="round-name-input"
+            placeholder="ROUND NAME"
+            v-model="roundName"
+            :state="isValidRoundName"></b-form-input>
+        </b-form-group>
+        <b-form-group label="入力の最小値" label-for="min-value-input" label-align="left">
+          <b-form-input
+            id="min-value-input"
+            placeholder="MIN VALUE"
+            v-model="minValue"
+            :state="isValidMinValue"></b-form-input>
+        </b-form-group>
+        <b-form-group label="入力の最大値" label-for="max-value-input" label-align="left">
+          <b-form-input
+            id="max-value-input"
+            placeholder="MAX VALUE"
+            v-model="maxValue"
+            :state="isValidMaxValue"></b-form-input>
+        </b-form-group>
+        <b-button
+          v-on:click="create"
+          v-bind:disabled="!isValid"
+          v-bind:variant="isValid ? 'primary' : 'false'"
+        >Create New Round
+        </b-button>
+        <b-alert variant="success" v-bind:show="created">
+          Created Round ID: {{createdRoundId}}<br>
+          <router-link v-bind:to="'/hagetaka/rounds/' + createdRoundId">Go To Game</router-link><br>
+        </b-alert>
+      </b-form>
+    </b-card>
   </div>
 </template>
 

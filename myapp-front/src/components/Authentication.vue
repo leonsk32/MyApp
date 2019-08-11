@@ -1,20 +1,22 @@
 <template>
-  <div class="authentication">
-    <div v-if="userStatus" class="navbar-item">
-      <p class="navbar-item">{{ user.email }}</p>
-      <b-button
+  <b-nav-item-dropdown
+    v-bind:text="userStatus ? user.email : 'User'"
+    right
+  >
+      <b-dropdown-item
+        v-if="userStatus"
         @click="doLogout"
-        variant="danger">
-        ログアウト
-      </b-button>
-    </div>
-    <div v-else>
-        <router-link to="/login">Go To Login Page</router-link><br>
-    </div>
-  </div>
+      >ログアウト</b-dropdown-item>
+      <b-dropdown-item
+        v-else
+        @click="goToLogin"
+      >
+        ログインページへ
+      </b-dropdown-item>
+  </b-nav-item-dropdown>
 </template>
 <script>
-  import Firebase from '@/js/Firebase.js';
+  import Firebase from '@/js/Firebase.js'
 
   export default {
     name: 'authentication',
@@ -23,15 +25,18 @@
     },
     computed: {
       user() {
-        return this.$store.getters.user;
+        return this.$store.getters.user
       },
       userStatus() {
-        return this.$store.getters.isSignedIn;
+        return this.$store.getters.isSignedIn
       }
     },
     methods: {
       doLogout() {
-        Firebase.logout();
+        Firebase.logout()
+      },
+      goToLogin() {
+        this.$router.push("/login")
       }
     }
   };
