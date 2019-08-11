@@ -1,27 +1,69 @@
 <template>
-  <div class="bootstrap-sample">
-    <div v-if="existsRound">
-      <h1>[Round Name] {{ round.roundName }}</h1>
-      <h4>[Round Id] {{ $route.params.id }}</h4>
-      <router-link v-bind:to="'/hagetaka/rounds/' + $route.params.id + '/result'">Go To Result Page</router-link>
-    </div>
-    <div v-else>
-      <b-alert variant="danger" show>
-        <h1>{{error}}</h1>
-      </b-alert>
-    </div>
-    <b-form>
-      <b-form-group label="入力してね">
-        <b-form-input placeholder="name" v-model="name" :state="isValidName"></b-form-input>
-        <b-form-input placeholder="0-999" v-model="value" :state="isValidValue"></b-form-input>
-      </b-form-group>
-      <b-button
-        v-on:click="doAdd"
-        v-bind:variant="isValid ? 'primary' : 'false'"
-        v-bind:disabled="!isValid">
-        送る
-      </b-button>
-    </b-form>
+  <div>
+    <b-card>
+      <div v-if="existsRound">
+        <h1>[Round Name] {{ round.roundName }}</h1>
+        <h4>[Round Id] {{ $route.params.id }}</h4>
+        <router-link v-bind:to="'/hagetaka/rounds/' + $route.params.id + '/result'">Go To Result Page</router-link>
+      </div>
+      <div v-else>
+        <b-alert variant="danger" show>
+          <h1>{{error}}</h1>
+        </b-alert>
+      </div>
+    </b-card>
+    <b-card>
+      <b-form>
+        <b-form-group
+          label="ユーザ名"
+          label-align="left"
+          label-for="input-name"
+        >
+          <b-form-input
+            id="input-name"
+            placeholder="Enter name"
+            v-model="name"
+            type="text"
+            :state="isValidName"></b-form-input>
+          <b-form-invalid-feedback
+            :state="isValidName"
+            text-align="left"
+          >
+            半角英数のみ使用してください
+          </b-form-invalid-feedback>
+        </b-form-group>
+
+        <b-form-group
+          label="数値"
+          label-align="left"
+          label-for="input-value"
+          description="0-999"
+        >
+          <b-form-input
+            id="input-value"
+            placeholder="0"
+            v-model="value"
+            type="number"
+            :state="isValidValue"></b-form-input>
+          <b-form-invalid-feedback
+            :state="isValidValue"
+            text-align="left"
+          >
+            0-999の数値を入力してください
+          </b-form-invalid-feedback>
+          <b-form-text>
+
+          </b-form-text>
+        </b-form-group>
+
+        <b-button
+          v-on:click="doAdd"
+          v-bind:variant="isValid ? 'primary' : 'false'"
+          v-bind:disabled="!isValid">
+          送る
+        </b-button>
+      </b-form>
+    </b-card>
   </div>
 </template>
 
