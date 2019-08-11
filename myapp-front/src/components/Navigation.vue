@@ -24,7 +24,7 @@
   </div>
 </template>
 <script>
-  import Authentication from "@/components/Authentication.vue";
+  import Authentication from "../components/Authentication.vue";
   export default {
     name: "navigation",
     components: {

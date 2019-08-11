@@ -63,8 +63,7 @@
 </template>
 
 <script>
-  import firebase from 'firebase/app';
-  import 'firebase/firestore';
+  import Firebase from "../js/Firebase";
   import Validator from "../js/Validator";
   import HagetakaRoundInfo from "../components/HagetakaRoundInfo";
 
@@ -81,40 +80,25 @@
           date: null
         },
         name: "",
-        value: "",
-        error: ""
+        value: ""
       }
     },
 
     created: function () {
-      const docRef = firebase
-        .firestore()
-        .collection("hagetaka-rounds")
-        .doc(this.$route.params.id)
 
-      const vue = this
-
-      docRef.get().then(function (doc) {
-        if (doc.exists) {
-          vue.round = doc.data()
-        } else {
-          vue.round = null
-          vue.error = "No round found!"
-        }
-      }).catch(function (error) {
-        vue.round = null
-        vue.error = "Error getting round info: " + error
-      })
+      Firebase.getHagetakaRoundInfo(
+        this.$route.params.id,
+        data => this.round = data
+      )
     },
 
     methods: {
       doAdd() {
-        const now = new Date();
-        firebase.firestore().collection('hagetaka').add({
+        Firebase.submitHagetakaAnswer({
           roundId: this.$route.params.id,
           name: this.name,
           value: Number(this.value),
-          date: now
+          date: new Date()
         })
       }
     },
@@ -135,10 +119,6 @@
 
       isValid() {
         return this.isValidName && this.isValidValue
-      },
-
-      existsRound() {
-        return this.round !== null
       }
     }
   }

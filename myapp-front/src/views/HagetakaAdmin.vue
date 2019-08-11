@@ -35,7 +35,8 @@
         <p></p>
         <b-alert variant="success" v-bind:show="created">
           Created Round ID: {{createdRoundId}}<br>
-          <router-link v-bind:to="'/hagetaka/rounds/' + createdRoundId">Go To Game</router-link><br>
+          <router-link v-bind:to="'/hagetaka/rounds/' + createdRoundId">Go To Game</router-link>
+          <br>
         </b-alert>
       </b-form>
     </b-card>
@@ -43,9 +44,8 @@
 </template>
 
 <script>
-  import firebase from 'firebase/app';
-  import 'firebase/firestore';
   import Validator from "../js/Validator";
+  import Firebase from "../js/Firebase";
 
   export default {
     data() {
@@ -63,16 +63,13 @@
         return Validator.isNumeric(value)
       },
       create() {
-        const vue = this
-        const now = new Date();
-        firebase.firestore().collection('hagetaka-rounds').add({
-          roundName: this.roundName,
-          minValue: this.minValue,
-          maxValue: this.maxValue,
-          date: now
-        }).then(function (docRef) {
-          vue.createdRoundId = docRef.id
-        })
+        Firebase.createHagetakaRound({
+            roundName: this.roundName,
+            minValue: this.minValue,
+            maxValue: this.maxValue,
+            date: new Date()
+          },
+          id => this.createdRoundId = id)
       }
     },
 

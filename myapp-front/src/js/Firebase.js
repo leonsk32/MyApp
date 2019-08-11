@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import store from "@/store";
+import store from "../store";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBmVsZs6nbSFa0iwU02V3AZCfuvdLD1tSw",
@@ -21,14 +21,14 @@ export default {
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
   },
   createUser(email, password) {
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
       console.log("create user error")
       const errorCode = error.code
       const errorMessage = error.message
     })
   },
   login(email, password) {
-    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
       console.log("login error")
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -43,5 +43,45 @@ export default {
       store.commit('onAuthStateChanged', user);
       store.commit('onUserStatusChanged', !!user.uid);
     });
+  },
+  getHagetakaRoundInfo(id, setRound) {
+    const docRef = firebase
+      .firestore()
+      .collection("hagetaka-rounds")
+      .doc(id)
+
+    docRef.get().then(function (doc) {
+      if (doc.exists) {
+        // 遅延して実行されるので、コールバックで指定するしかない？
+        setRound(doc.data())
+      } else {
+        console.log("No round found!")
+      }
+    }).catch(function (error) {
+      console.log("Error getting round info: " + error)
+    })
+  },
+  onHagetakaSubmitted(id, callback) {
+    firebase
+      .firestore()
+      .collection("hagetaka")
+      .where("roundId", "==", id)
+      .onSnapshot(function (snapshot) {
+        snapshot.docChanges().forEach(function (change) {
+          if (change.type === "added") {
+            callback(change.doc.data())
+          }
+        })
+      })
+  },
+  submitHagetakaAnswer(answer) {
+    firebase.firestore().collection('hagetaka').add(answer)
+  },
+  createHagetakaRound(round, setRoundId) {
+    firebase.firestore().collection('hagetaka-rounds')
+      .add(round)
+      .then(function (docRef) {
+        setRoundId(docRef.id)
+      })
   }
-};
+}

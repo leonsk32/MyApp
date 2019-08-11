@@ -17,8 +17,7 @@
 </template>
 
 <script>
-  import firebase from 'firebase/app';
-  import 'firebase/firestore';
+  import Firebase from '../js/Firebase.js'
   import HagetakaRoundInfo from "../components/HagetakaRoundInfo";
 
   export default {
@@ -38,50 +37,30 @@
       }
     },
     created: function () {
+
+      Firebase.getHagetakaRoundInfo(
+        this.$route.params.id,
+        data => this.round = data
+      )
+
       const vue = this
+      Firebase.onHagetakaSubmitted(
+        this.$route.params.id,
+        function (data) {
+          let sameValueAnswer = vue.answers.find(answer => answer.value === data.value)
+          if (typeof sameValueAnswer !== 'undefined') {
+            sameValueAnswer.names.push(data.name)
+          } else {
+            vue.answers.push({
+              names: [data.name],
+              value: data.value
+            })
+          }
 
-      const docRef = firebase
-        .firestore()
-        .collection("hagetaka-rounds")
-        .doc(this.$route.params.id)
-
-      docRef.get().then(function (doc) {
-        if (doc.exists) {
-          vue.round = doc.data()
-        } else {
-          vue.round = null
-          vue.error = "No round found!"
+          vue.answers.sort((a, b) => b.value - a.value)
+          vue.topAnswer = vue.answers.find((answer) => answer.names.length === 1)
         }
-      }).catch(function (error) {
-        vue.round = null
-        vue.error = "Error getting round info: " + error
-      })
-
-      firebase
-        .firestore()
-        .collection("hagetaka")
-        .where("roundId", "==", this.$route.params.id)
-        .onSnapshot(function (snapshot) {
-          snapshot.docChanges().forEach(function (change) {
-            if (change.type === "added") {
-              const answer = change.doc.data()
-
-              let sameValueAnswer = vue.answers.find(item => item.value === answer.value)
-              if (typeof sameValueAnswer !== 'undefined') {
-                sameValueAnswer.names.push(answer.name)
-              } else {
-                vue.answers.push({
-                  names: [answer.name],
-                  value: answer.value
-                })
-              }
-
-              vue.answers.sort((a, b) => b.value - a.value)
-              vue.topAnswer = vue.answers.find((item) => item.names.length === 1)
-            }
-          })
-        })
-
+      )
     },
     computed: {
       results() {

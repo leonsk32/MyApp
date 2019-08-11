@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 
-import RockScissorsPaper from '@/js/RockScissorsPaper'
+import RockScissorsPaper from './js/RockScissorsPaper'
 import HagetakaAdmin from "./views/HagetakaAdmin";
 import Hagetaka from "./views/Hagetaka";
 import Login from "./views/Login";

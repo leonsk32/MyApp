@@ -16,7 +16,7 @@
   </b-nav-item-dropdown>
 </template>
 <script>
-  import Firebase from '@/js/Firebase.js'
+  import Firebase from '../js/Firebase.js'
 
   export default {
     name: 'authentication',
