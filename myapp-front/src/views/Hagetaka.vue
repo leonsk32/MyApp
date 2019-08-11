@@ -1,6 +1,9 @@
 <template>
   <div>
-    <b-card>
+    <b-card
+      title="試合情報"
+      style="margin-left: 20px; margin-right: 20px; margin-top: 20px"
+    >
       <div v-if="existsRound">
         <h1>[Round Name] {{ round.roundName }}</h1>
         <h4>[Round Id] {{ $route.params.id }}</h4>
@@ -12,7 +15,10 @@
         </b-alert>
       </div>
     </b-card>
-    <b-card>
+    <b-card
+      title="投票"
+      style="margin-left: 20px; margin-right: 20px; margin-top: 20px"
+    >
       <b-form>
         <b-form-group
           label="ユーザ名"

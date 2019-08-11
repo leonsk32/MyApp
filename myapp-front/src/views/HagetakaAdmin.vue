@@ -1,6 +1,9 @@
 <template>
   <div>
-    <b-card>
+    <b-card
+      title="ラウンド作成"
+      style="margin-left: 20px; margin-right: 20px; margin-top: 20px"
+    >
       <b-form>
         <b-form-group label="ラウンド名" label-for="round-name-input" label-align="left">
           <b-form-input
@@ -29,6 +32,7 @@
           v-bind:variant="isValid ? 'primary' : 'false'"
         >Create New Round
         </b-button>
+        <p></p>
         <b-alert variant="success" v-bind:show="created">
           Created Round ID: {{createdRoundId}}<br>
           <router-link v-bind:to="'/hagetaka/rounds/' + createdRoundId">Go To Game</router-link><br>

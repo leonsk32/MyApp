@@ -1,24 +1,38 @@
 <template>
-  <b-form>
-    <b-form-group label="サインアップ">
-      <b-form-input type="email" placeholder="email" v-model="signUpInfo.email"></b-form-input>
-      <b-form-input type="password" placeholder="passwod" v-model="signUpInfo.password"></b-form-input>
-    </b-form-group>
-    <b-button
-      v-on:click="signUp"
-      variant="primary">
-      ユーザ作成
-    </b-button>
-    <b-form-group label="ログイン">
-      <b-form-input type="email" placeholder="email" v-model="loginInfo.email"></b-form-input>
-      <b-form-input type="password" placeholder="password" v-model="loginInfo.password"></b-form-input>
-    </b-form-group>
-    <b-button
-      v-on:click="login"
-      variant="primary">
-      ログイン
-    </b-button>
-  </b-form>
+  <div>
+    <b-card
+      title="サインアップ"
+      style="margin-left: 20px; margin-right: 20px; margin-top: 20px"
+    >
+      <b-form>
+        <b-form-group>
+          <b-form-input type="email" placeholder="email" v-model="signUpInfo.email"></b-form-input>
+          <b-form-input type="password" placeholder="passwod" v-model="signUpInfo.password"></b-form-input>
+        </b-form-group>
+        <b-button
+          v-on:click="signUp"
+          variant="primary">
+          ユーザ作成
+        </b-button>
+      </b-form>
+    </b-card>
+    <b-card
+      title="ログイン"
+      style="margin-left: 20px; margin-right: 20px; margin-top: 20px"
+    >
+      <b-form>
+        <b-form-group>
+          <b-form-input type="email" placeholder="email" v-model="loginInfo.email"></b-form-input>
+          <b-form-input type="password" placeholder="password" v-model="loginInfo.password"></b-form-input>
+        </b-form-group>
+        <b-button
+          v-on:click="login"
+          variant="primary">
+          ログイン
+        </b-button>
+      </b-form>
+    </b-card>
+  </div>
 </template>
 
 <script>
