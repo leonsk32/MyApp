@@ -32,19 +32,19 @@
           label="数値"
           label-align="left"
           label-for="input-value"
-          description="0-999"
-        >
-          <b-form-input
-            id="input-value"
-            placeholder="0"
-            v-model="value"
-            type="number"
-            :state="isValidValue"></b-form-input>
-          <b-form-invalid-feedback
-            :state="isValidValue"
-            text-align="left"
-          >
-            0-999の数値を入力してください
+          v-bind:description="round.minValue + ' 以上 ' + round.maxValue + ' 以下の数字数を入力してください '"
+            >
+            <b-form-input
+              id="input-value"
+              placeholder="Enter value"
+              v-model="value"
+              type="number"
+              :state="isValidValue"></b-form-input>
+            <b-form-invalid-feedback
+              :state="isValidValue"
+              text-align="left"
+            >
+              {{round.minValue}} 以上 {{round.maxValue}} 以下の整数である必要があります
           </b-form-invalid-feedback>
           <b-form-text>
 
@@ -114,7 +114,7 @@
         if (!Validator.isNumeric(this.value)) return false;
 
         const number = Number(this.value);
-        return number >= 0 && number <= 999
+        return number >= this.round.minValue && number <= this.round.maxValue
       },
 
       isValid() {
