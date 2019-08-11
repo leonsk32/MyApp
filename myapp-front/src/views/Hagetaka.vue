@@ -7,6 +7,7 @@
     <b-card
       title="投票"
       style="margin: 20px"
+      v-if="!submitted"
     >
       <b-form>
         <b-form-group
@@ -46,9 +47,6 @@
             >
               {{round.minValue}} 以上 {{round.maxValue}} 以下の整数である必要があります
           </b-form-invalid-feedback>
-          <b-form-text>
-
-          </b-form-text>
         </b-form-group>
 
         <b-button
@@ -59,6 +57,11 @@
         </b-button>
       </b-form>
     </b-card>
+    <b-alert variant="success" v-bind:show="submitted">
+      投票を受け付けました<br>
+      <b-badge>ユーザ名</b-badge> {{name}}<br>
+      <b-badge>数値</b-badge> {{value}}<br>
+    </b-alert>
   </div>
 </template>
 
@@ -80,7 +83,8 @@
           date: null
         },
         name: "",
-        value: ""
+        value: "",
+        submitted: false
       }
     },
 
@@ -100,6 +104,8 @@
           value: Number(this.value),
           date: new Date()
         })
+
+        this.submitted = true
       }
     },
 
