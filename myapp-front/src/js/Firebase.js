@@ -47,7 +47,7 @@ export default {
   getHagetakaRoundInfo(id, setRound) {
     const docRef = firebase
       .firestore()
-      .collection("hagetaka-rounds")
+      .collection("games/hagetaka/rounds")
       .doc(id)
 
     docRef.get().then(function (doc) {
@@ -64,7 +64,7 @@ export default {
   onHagetakaSubmitted(id, callback) {
     firebase
       .firestore()
-      .collection("hagetaka")
+      .collection("games/hagetaka/answers")
       .where("roundId", "==", id)
       .onSnapshot(function (snapshot) {
         snapshot.docChanges().forEach(function (change) {
@@ -75,10 +75,10 @@ export default {
       })
   },
   submitHagetakaAnswer(answer) {
-    firebase.firestore().collection('hagetaka').add(answer)
+    firebase.firestore().collection('games/hagetaka/answers').add(answer)
   },
   createHagetakaRound(round, setRoundId) {
-    firebase.firestore().collection('hagetaka-rounds')
+    firebase.firestore().collection('games/hagetaka/rounds')
       .add(round)
       .then(function (docRef) {
         setRoundId(docRef.id)

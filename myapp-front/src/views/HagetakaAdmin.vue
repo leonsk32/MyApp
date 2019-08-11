@@ -64,6 +64,7 @@
       },
       create() {
         Firebase.createHagetakaRound({
+            authorId: this.$store.getters.user.uid,
             roundName: this.roundName,
             minValue: this.minValue,
             maxValue: this.maxValue,
