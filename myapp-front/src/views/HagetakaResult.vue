@@ -4,14 +4,16 @@
       v-bind:roundId="$route.params.id"
       v-bind:roundName="round.roundName"
     />
-    <b-alert variant="primary" show v-if="existsTop">
-      <h1>Top Player: {{topAnswer.names[0]}} !!! ({{topAnswer.value}})</h1>
-      <router-link v-bind:to="'/hagetaka/rounds/' + $route.params.id">Back To Game Page</router-link>
-      <br>
-    </b-alert>
-    <b-alert variant="secondary" show v-else>
-      <h1>no top player...</h1>
-    </b-alert>
+    <b-card title="Top Player" style="margin: 20px">
+      <div v-if="existsTop">
+        <h1>⭐ {{topAnswer.names[0]}} ⭐</h1>
+        <b-badge>value</b-badge>
+        {{topAnswer.value}}
+      </div>
+      <div v-else>
+        <h1>No Top Player...</h1>
+      </div>
+    </b-card>
     <b-table hover :items="results"></b-table>
   </div>
 </template>
