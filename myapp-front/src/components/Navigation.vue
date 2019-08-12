@@ -10,7 +10,7 @@
           <b-nav-item>
             <router-link to="/">Home</router-link>
           </b-nav-item>
-          <b-nav-item>
+          <b-nav-item v-if="$store.getters.isSignedIn">
             <router-link to="/hagetaka-admin">HagetakaAdmin</router-link>
           </b-nav-item>
         </b-navbar-nav>

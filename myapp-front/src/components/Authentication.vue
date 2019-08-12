@@ -1,5 +1,6 @@
 <template>
   <b-nav-item-dropdown
+    id="auth"
     v-bind:text="userStatus ? user.email : 'User'"
     right
   >
@@ -42,4 +43,8 @@
   };
 </script>
 <style scoped>
+  #auth {
+    font-weight: bold;
+    color: white;
+  }
 </style>
