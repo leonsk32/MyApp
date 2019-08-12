@@ -96,5 +96,8 @@ export default {
           }
         })
       })
+  },
+  submitMinorityVote(vote) {
+    firebase.firestore().collection('games/minorityVote/votes').add(vote)
   }
 }

@@ -6,6 +6,7 @@ import RockScissorsPaper from './js/RockScissorsPaper'
 import HagetakaAdmin from "./views/HagetakaAdmin";
 import Hagetaka from "./views/Hagetaka";
 import Login from "./views/Login";
+import MinorityVote from "./views/MinorityVote";
 
 Vue.use(Router)
 
@@ -43,6 +44,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/minority-vote',
+      name: '/minority-bote',
+      component: MinorityVote
     }
   ]
 })

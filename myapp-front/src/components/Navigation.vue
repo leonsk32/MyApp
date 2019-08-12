@@ -13,6 +13,9 @@
           <b-nav-item v-if="$store.getters.isSignedIn">
             <router-link to="/hagetaka-admin">HagetakaAdmin</router-link>
           </b-nav-item>
+          <b-nav-item>
+            <router-link to="/minority-vote">MinorityVote</router-link>
+          </b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
